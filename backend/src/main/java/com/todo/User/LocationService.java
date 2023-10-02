@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.todo.TodoDAO;
+import com.todo.Exceptions.ResourceNotFoundException;
 import com.todo.Location.MyLocation;
-import com.todo.task.Exceptions.ResourceNotFoundException;
 
 @Service
 public class LocationService {
