@@ -1,0 +1,24 @@
+services:
+#this configures our database / container that we are creating
+  db:
+    container_name: postgres-db
+    image: postgres:15.3
+    environment:
+      POSTGRES_USER: ahowell2000
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    ports:
+      - "5332:5432"
+    networks:
+      - db
+    volumes:
+      - db:/data/postgres
+    restart: unless-stopped
+
+
+#for all networks use the bridge driver
+networks: 
+      db:
+        driver: bridge
+volumes:
+  db:

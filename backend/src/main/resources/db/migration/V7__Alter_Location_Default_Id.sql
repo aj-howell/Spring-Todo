@@ -1,0 +1,2 @@
+ALTER TABLE users
+ALTER COLUMN location_id SET DEFAULT 0;
