@@ -1,4 +1,4 @@
-package com.todo.task.Exceptions;
+package com.todo.Exceptions;
 
 public class ResourceNotFoundException extends NullPointerException  {
 

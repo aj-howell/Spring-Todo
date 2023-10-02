@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.todo.Priority;
 import com.todo.TodoDAO;
-import com.todo.task.Exceptions.ResourceNotFoundException;
+import com.todo.Exceptions.ResourceNotFoundException;
 import com.todo.task.subtask.SubTask;
 import com.todo.task.subtask.SubTaskRegistrationRequest;
 
