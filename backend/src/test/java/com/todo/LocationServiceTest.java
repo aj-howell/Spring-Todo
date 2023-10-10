@@ -12,8 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import com.todo.Location.LocationService;
 import com.todo.Location.MyLocation;
-import com.todo.User.LocationService;
 import com.todo.User.User;
 
 public class LocationServiceTest extends AbstractTestcontainersUnitTests

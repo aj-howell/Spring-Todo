@@ -17,7 +17,7 @@ import com.todo.User.UserRegistrationRequest;
 import com.todo.User.UserService;
 
 public class UserServiceTest extends AbstractTestcontainersUnitTests {
-        private UserService underTest;
+    private UserService underTest;
 
     @Mock
     private TodoDAO UserDao;
@@ -27,18 +27,6 @@ public class UserServiceTest extends AbstractTestcontainersUnitTests {
     {
         UserDao = mock(TodoDAO.class);
         underTest = new UserService(UserDao);
-    }
-
-    private String getRandomUserName() {
-        return faker.name().username();
-    }
-
-    private String getRandomEmail() {
-        return faker.internet().emailAddress();
-    }
-
-    private String getRandomPhoneNumber() {
-        return faker.phoneNumber().phoneNumber();
     }
 
     @Test

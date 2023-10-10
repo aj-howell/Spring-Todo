@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.todo.Location.LocationService;
 import com.todo.Location.MyLocation;
+import com.todo.task.PrayerTask;
 
 
 @RestController
@@ -67,5 +69,10 @@ public class UserController
     @GetMapping("/locations")
     public List<MyLocation> getLocations() {
         return locationService.getLocations();
+    }
+
+    @GetMapping("{userId}/prayer")
+    public PrayerTask getPrayer(@PathVariable("userId") Integer userId) {
+        return userService.GetUserPrayer(userId);
     }
 }

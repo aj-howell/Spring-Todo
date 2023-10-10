@@ -1,4 +1,4 @@
-package com.todo.User;
+package com.todo.Location;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.todo.TodoDAO;
 import com.todo.Exceptions.ResourceNotFoundException;
-import com.todo.Location.MyLocation;
+import com.todo.User.User;
 
 @Service
 public class LocationService {
