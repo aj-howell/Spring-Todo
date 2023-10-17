@@ -1,0 +1,117 @@
+<div class="body">
+    <div class="header">
+        <form class="user_dropdown" action ="placeholder" method="get">
+            User Details
+            <select name="user_options" id="">
+                <option value="Profile">Profile</option>
+                <option value="Logout">Logout</option>
+                <option value="Settings">Settings</option>
+            </select>
+        </form>
+        <h2>Spring Todo</h2>
+    </div>
+
+    <div class="dashboard">
+        <div class="menu">
+            <h1>Menu</h1>
+            <ul>
+                <li>
+                    <button (click)="toggleTasks()">
+                        Task
+                    </button>
+                </li>
+                <li>
+                    <button (click)="toggleSubtasks()">
+                        Subtask
+                    </button>    
+                </li>
+                <li>
+                    <button (click)="togglePrayerTask()">
+                        Prayer Task
+                    </button>    
+                </li>
+            </ul>
+        </div>
+
+            <div class="tables">
+                <h2>{{tableTitle}}</h2>
+                <table id="task-table" *ngIf="userTasks.length != 0 && displaySubtasks==false && displayPrayer==false">
+                    <thead>
+                        <tr>
+                            <td>task id</td>
+                            <td>name</td>
+                            <td>topic</td>
+                            <td>description</td>
+                            <td>start date</td>
+                            <td>due date</td>
+                            <td>priority</td>
+                            <td>has subtasks?</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="tasks" *ngFor="let task of userTasks">
+                            <td>{{task.taskId}}</td>
+                            <td>{{task.taskName}}</td>
+                            <td>{{task.topic}}</td>
+                            <td>{{task.description}}</td>
+                            <td>{{task.startDate}}</td>
+                            <td>{{task.dueDate}}</td>
+                            <td>{{task.priority}}</td>
+                            <td>{{task.subTasks.length != 0}}</td>
+                        </tr>
+                    </tbody>
+                    
+
+                </table>
+
+                <table id="subtask-table" *ngIf="userSubTasks.length != 0 && displaySubtasks==true && displayPrayer==false">
+                    <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>description</td>
+                            <td>task id</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="subtasks" *ngFor="let subtask of userSubTasks">
+                            <td>
+                                {{subtask.taskName}}
+                            </td>
+                            <td>
+                                {{subtask.description}}
+                            </td>
+                            <td>
+                                {{subtask.parentTaskId}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+
+                </table>
+
+                <table *ngIf="prayerTask != null && displayPrayer==true">
+                    <tr>
+                        <td>{{prayerTask.taskName}}</td>
+                        <td>{{prayerTask.topic}}</td>
+                        <td>{{prayerTask.description}}</td>
+                        <td>{{prayerTask.startDate}}</td>
+                        <td>{{prayerTask.priority}}</td>
+                    </tr>
+
+                    <tr *ngFor="let prayers of prayerTask.subTasks">
+                        <td>
+                            {{prayers.taskName}}
+                        </td>
+                        <td>
+                            {{prayers.description}}
+                        </td>
+                        <td>
+                            {{prayers.parentTaskId}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+</div>

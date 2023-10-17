@@ -14,6 +14,7 @@ import com.todo.Email.GMailer;
 import com.todo.Exceptions.ResourceNotFoundException;
 import com.todo.PrayerDetails.PrayerDetailsFactory;
 import com.todo.task.PrayerTask;
+import com.todo.task.Task;
 import com.todo.task.subtask.SubTask;
 
 @Service
@@ -125,6 +126,51 @@ public class UserService {
             
             notified=true;
 
+       return prayerTask;
+    }
+
+
+    public Task GetUserPrayer2(Integer userId) {
+    
+       User selected =  userDao.GetUserById(userId)
+        .orElseThrow( ()-> new ResourceNotFoundException("This user does not exist"));
+
+       List<String> prayers = PrayerDetailsFactory.GetPrayerDetails(selected.getLocation().getCity_name().replaceAll("\\s+","%20"), userId);
+
+       PrayerTask prayerTask = new PrayerTask();
+       prayerTask.setDescription("Pray your 5 daily prayers at the prescribed times");
+       prayerTask.setPriority(Priority.High.toString());
+       prayerTask.setStartDate(LocalDate.now());
+       prayerTask.setTaskName("Daily Prayers");
+       prayerTask.setUser_id(userId);
+       prayerTask.setTopic("Islam");
+
+        for(int i=0; i<=prayers.size()-1; i++)
+            {
+                SubTask subTask = new SubTask();
+                    if(i==0)
+                    {
+                        subTask.setTaskName("Fajr: "+prayers.get(i));
+                    }
+                    else if(i==1)
+                    {
+                        subTask.setTaskName("Dhuhr: "+prayers.get(i));
+                    }
+                    else if(i==2)
+                    {
+                        subTask.setTaskName("Asr: "+prayers.get(i));
+                    }
+                    else if(i==3)
+                    {
+                        subTask.setTaskName("Maghrib: "+prayers.get(i));
+                    }
+                    else
+                    {
+                        subTask.setTaskName("Isha: "+prayers.get(i));
+                    }
+                    subTask.setDescription("Make sure that you do not miss this prayer");
+                    prayerTask.addSubtask(subTask);
+            }  
        return prayerTask;
     }
 }

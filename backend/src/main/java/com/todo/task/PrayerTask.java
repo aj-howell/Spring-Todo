@@ -5,7 +5,4 @@ public class PrayerTask extends Task {
     public PrayerTask()
     {
     }
-
-
-
 }

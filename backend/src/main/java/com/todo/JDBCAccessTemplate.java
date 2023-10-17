@@ -63,7 +63,20 @@ public class JDBCAccessTemplate implements TodoDAO
            var sql = """
                 SELECT * FROM tasks WHERE user_id = ?;
                 """;
-           return  jdbcTemplate.query(sql,  taskRowMapper, userId);
+
+            List<Task> tasks=  jdbcTemplate.query(sql,  taskRowMapper, userId);
+            tasks.forEach(t->
+                {
+                    t.setSubTasks(
+                        GetSubTaskByTaskId(t.getTaskId()));
+                    t.getSubTasks().forEach(st->
+                    {
+                        st.setParentTaskId(t.getTaskId());
+                    });
+                });
+
+            
+           return  tasks;
     }
 
 
@@ -329,6 +342,8 @@ public class JDBCAccessTemplate implements TodoDAO
 
         Integer location_id =selected.get().getLocation().getLocation_id();
         MyLocation populatedLocation=GetLocationById(location_id).get();
+
+
 
         selected.get().setLocation(populatedLocation);
         

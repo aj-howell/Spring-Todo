@@ -2,6 +2,7 @@ package com.todo.User;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.todo.Location.LocationService;
 import com.todo.Location.MyLocation;
-import com.todo.task.PrayerTask;
+import com.todo.task.Task;
 
 
 @RestController
@@ -71,8 +72,9 @@ public class UserController
         return locationService.getLocations();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("{userId}/prayer")
-    public PrayerTask getPrayer(@PathVariable("userId") Integer userId) {
-        return userService.GetUserPrayer(userId);
+    public Task getPrayer(@PathVariable("userId") Integer userId) {
+        return userService.GetUserPrayer2(userId);
     }
 }

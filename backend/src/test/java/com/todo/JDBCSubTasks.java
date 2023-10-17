@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -127,7 +128,7 @@ public class JDBCSubTasks extends AbstractTestcontainersUnitTests {
     
         underTest.CreateUser(registrationRequest);
     
-        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName, "Clean Clothes", "Wash all of the white clothes", "High", 1);
+        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName+UUID.randomUUID(), "Clean Clothes", "Wash all of the white clothes", "High", 1);
     
         underTest.CreateTask(task);
 
@@ -233,7 +234,7 @@ public class JDBCSubTasks extends AbstractTestcontainersUnitTests {
     
         underTest.CreateUser(registrationRequest);
     
-        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName, "clothes", "buy new clothes", "High", 1);
+        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName+UUID.randomUUID(), "clothes", "buy new clothes", "High", 1);
     
         underTest.CreateTask(task);
 
@@ -292,7 +293,7 @@ public class JDBCSubTasks extends AbstractTestcontainersUnitTests {
     
         underTest.CreateUser(registrationRequest);
     
-        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName, "clothes", "buy new clothes", "High", 1);
+        TaskRegistrationRequest task = new TaskRegistrationRequest(LocalDate.now(), LocalDate.now(), randomTaskName+UUID.randomUUID(), "clothes", "buy new clothes", "High", 1);
     
         underTest.CreateTask(task);
 

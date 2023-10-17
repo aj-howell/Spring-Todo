@@ -1,0 +1,71 @@
+.menu {
+    background-color: rgb(76, 76, 105);
+    border-right: 2px solid white;
+    padding-right: 3px;
+    text-align: center;
+    width: 150px;
+}
+
+.tables {
+    background-color: green;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+
+    td
+    {
+        padding: 15px;
+    }
+}
+
+#task-table
+{
+    margin-left: 245px;
+    text-align: left;
+    position:sticky;
+    font-size:x-large;
+}
+
+#subtask-table
+{
+    margin-left: 550px;
+    text-align: left;
+    position:sticky;
+    font-size:x-large;
+}
+
+.header {
+    background-color: red;
+    border: dashed;
+    text-align: center;
+    height: auto;
+    width: auto;
+    height: 75px;
+}
+
+.header form
+{
+    text-align: right;
+}
+
+.header h2
+{
+    padding-bottom: 100px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 99vh;
+}
+
+.dashboard {
+    display: flex;
+    height: 99vh;
+    width: 100%;
+}
+
+#PrayerButton {
+    align-self: baseline;
+}

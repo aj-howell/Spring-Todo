@@ -123,4 +123,12 @@ public class TaskService {
         System.out.println("length of sublists: "+selected.getSubTasks().size());
         
     }
+
+    public List<Task> GetTasksByUserID(Integer userId)
+    {
+        taskDao.GetUserById(userId)
+        .orElseThrow( ()-> new ResourceNotFoundException("This user does not exist"));
+
+        return taskDao.GetTasksByUserID(userId);
+    }
 };

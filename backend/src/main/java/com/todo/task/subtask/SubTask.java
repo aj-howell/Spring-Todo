@@ -1,6 +1,6 @@
 package com.todo.task.subtask;
 
-public class SubTask{
+public class SubTask {
 
     String taskName;
     String description;

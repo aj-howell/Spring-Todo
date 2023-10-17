@@ -34,6 +34,7 @@ public class GMailer {
     
     private String user_email;
 
+
     public GMailer(String user_email)
     {
       this.user_email=user_email;
@@ -51,17 +52,18 @@ public class GMailer {
         .setDataStoreFactory(new FileDataStoreFactory(Paths.get("tokens").toFile()))
         .setAccessType("offline")
         .build();
+
+     //used to receive the authorization from user   
      LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
 
-      if(!compareLastEmailRecipient(email))
+      if(!compareLastEmailRecipient(email)) // if the email changed then make the user re-authenticate
       {
          flow.getCredentialDataStore().delete("user"); // Change "user" to your user identifier
          System.out.println("deleted");
       }
 
+      //authorizes the user 
       Credential credential = new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
-     
-    
        //returns an authorized Credential object.
        return credential;
   }
@@ -86,12 +88,14 @@ public class GMailer {
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress(userEmail));
 
+        //setting the email after each send
         setUser_email(userEmail);
 
+        //adding email components
         email.addRecipient(javax.mail.Message.RecipientType.TO,
             new InternetAddress(userEmail));
         email.setSubject(messageSubject);
-        email.setText(bodyText);
+        email.setText(bodyText); 
 
         // Encode and wrap the MIME message into a gmail message
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -101,6 +105,7 @@ public class GMailer {
         Message message = new Message();
         message.setRaw(encodedEmail);
 
+        //sending the email
         try {
           service.users().messages().send("me", message).execute();
           System.out.println("message id: " + message.getId());
@@ -116,7 +121,7 @@ public class GMailer {
 
     }
 
-        public void setUser_email(String user_email) {
+    public void setUser_email(String user_email) {
       this.user_email = user_email;
     }
 
